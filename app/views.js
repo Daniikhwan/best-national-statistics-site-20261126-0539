@@ -120,8 +120,10 @@ function overview(root) {
     const { years, values } = sliceRange(YEARS, m.data.values, range);
     chartBox.innerHTML = '';
     const label = `${m.data.label}, ${years[0]}–${years[years.length - 1]}`;
-    if (m.kind === 'bar') barChart(chartBox, { years, values, label, decimals: m.decimals });
-    else lineChart(chartBox, { years, values, label, decimals: m.decimals });
+    // Shorter chart on the overview so the whole chart, axes included,
+    // fits in one screen on a laptop.
+    if (m.kind === 'bar') barChart(chartBox, { years, values, label, decimals: m.decimals, height: 200 });
+    else lineChart(chartBox, { years, values, label, decimals: m.decimals, height: 200 });
     chartTitle.textContent = m.title;
     chartSource.textContent = `Source: ${m.data.source}`;
   }
